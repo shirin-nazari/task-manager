@@ -1,3 +1,6 @@
+// I have bug in connection in database I dont know but today try fix bug
+require('./db/connect');
+
 const express = require('express');
 const app = express();
 const tasks = require('./routes/tasks');
