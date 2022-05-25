@@ -4,7 +4,14 @@ const mongoose = require('mongoose');
 const connectionString =
   'mongodb+srv://shirin:RCtWOiGgJH0t2FYg@cluster0.1uhef.mongodb.net/TASK-MANAGER?retryWrites=true&w=majority';
 
-mongoose
-  .connect(connectionString)
-  .then(() => console.log('Connected to the db ....'))
-  .catch((err) => console.log(err));
+const connectDB = (url) => {
+  return mongoose.connect(connectionString, {
+    useNewUrlParser: true,
+    // are not supports
+    // useCreateIndex: true,
+    // useFindAndModify: false,
+    useUnifiedTopology: true,
+  });
+};
+
+module.exports = connectDB;
