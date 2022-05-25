@@ -3,7 +3,7 @@ const getAllTasks = async (req, res) => {
   try {
     // get all tasks
     const tasks = await Task.find({});
-    res.status(201).json({ tasks });
+    res.status(200).json({ tasks });
   } catch (err) {
     res.status(500).json({ msg: err });
   }
@@ -18,9 +18,18 @@ const createTask = async (req, res) => {
     res.status(500).json({ msg: error });
   }
 };
-const getTask = (req, res) => {
+const getTask = async (req, res) => {
   //   res.send('get single task (:');
-  res.json({ id: req.params.id });
+  try {
+    const { id: taskId } = req.params;
+    const task = await Task.findOne({ _id: taskId });
+    if (!task) {
+      return res.status(404).json({ msg: `NO Task With Id : ${taskId}` });
+    }
+    res.status(201).json({ task });
+  } catch (err) {
+    res.status(500).json({ msg: error });
+  }
 };
 
 const updateTask = (req, res) => {
