@@ -6,13 +6,12 @@ const app = express();
 
 const port = 3000;
 // middleware
+// app.use(express.static('route front end'))
 app.use(express.json());
 // routes
-app.get('/hello', (req, res) => {
-  res.send('Hello my task manager');
-});
 // for get all tasks
 app.use('/api/v1/tasks', tasks);
+
 //  route.get // localhost: 3000 / api / v1 / tasks || get all tasks
 //route.post// localhost:3000/api/v1/tasks  || create tasks
 //route.get //localhost:3000/api/v1/tasks/hello ||get single task
